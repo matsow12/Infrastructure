@@ -1,0 +1,75 @@
+version: '2.4'
+
+services:
+  jenkins:
+    build:
+      context: ./jenkins_controller
+      dockerfile: dockerfile
+    container_name: jenkins
+    depends_on:
+      - artifactory
+    ports:
+      - "8880:8080"
+      - "5000:5000"
+    volumes:
+      - ./jenkins_controller/casc.yml:/usr/share/jenkins/ref/casc.yml
+    restart: always
+
+  jenkins_agent:
+    build: jenkins_agnet
+    container_name: jenkins_agent
+    depends_on:
+      - jenkins
+    ports:
+      - "2222:22"
+    volumes:
+      - /var/run/docker.sock/var/run/docker.sock
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDvAaWGhKJsIg+8rdecof0Ky/oinUzNGtAvDMovWQoTdzBQdvY18kxTWbkzGdUq7ApZe9khYCvSMpiGWuSfqAdUbcFFfbC2EYP5vD+nLx18jXdeRlExsWwCSpUdCtwzHNP0k3rahijB5AJyJLZ4Vhw6guuYJAi1wvSd6Quf6TKcPpHN4AZnR0emyA5IAowlwjU4sfMazSb/IX0N8LY+8thIYqWYG5lt6vs7OsRkujiQlVTLxfnoGl5DHXvwfFwKwQk2FFuei1jGuPfJfVMxJV1UAcxnuACewUt3tViBGaep1pAZXiZvRxyxxTqlfiQ1CVnXuQFTfBzMx0sD1sen0EyOWi/2Nf+AwsODS6U1vn6SwMD0ZKICaIUqQOFvOx0bRCdpczS0kgpJNNyZswDtw3AcLAe2q5zekf3T/c6LzDI6XX9LC2YWrZmIVfMZ8YxjK5lv5OojGyqSa5wf/R5LXJ9hOOOAJprb15pT8N7Y2ledOBjYUPri9uwvUmaJVmAaMvc= 
+    restart: always
+  
+  artifactory:
+    image: docker.bintray.io/jfrog/artifactory-jcr:7.39.4
+    container_name: artifactory
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+    volumes:
+      - ./artifactory:/artifactory_extra_conf/  
+           
+
+    healthcheck:
+      test: ["CMD","curl","-f", "http://192.168.44.44:8082/artifactory/api/system/ping" ]
+      interval: 1m30s
+      timeout: 10s
+      retries: 30
+      start_period: 40s
+
+    restart: always
+
+  sonarqube:
+    image: sonarqube:9.2.4-community
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    restart: always
+
+  selenium:
+    image: selenium/hub
+    container_name: selenium_hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+    restart: always
+
+  firefox:
+    image: selenium/node-firefox
+    container_name: firefox
+    depends_on: 
+      - selenium
+    environment:
+      - SE_EVENT_BUS_HOST=selenium_hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    restart: always
