@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<config xmlns="http://artifactory.jfrog.org/xsd/3.1.29" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.jfrog.org/xsd/artifactory-v3_1_29.xsd">
+<config xmlns="http://artifactory.jfrog.org/xsd/3.2.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://releases.jfrog.io/artifactory/static-release-virtual/xsd/artifactory/artifactory-v3_2_6.xsd">
     <offlineMode>false</offlineMode>
     <archiveIndexEnabled>false</archiveIndexEnabled>
-    <helpLinksEnabled>true</helpLinksEnabled>
     <fileUploadMaxSizeMb>100</fileUploadMaxSizeMb>
-    <revision>2</revision>
-    <dateFormat>dd-MM-yy HH:mm:ss z</dateFormat>
+    <revision>3</revision>
     <addons>
         <showAddonsInfo>true</showAddonsInfo>
         <showAddonsInfoCookie>1683734494877</showAddonsInfoCookie>
     </addons>
     <security>
-        <anonAccessEnabled>false</anonAccessEnabled>
         <hideUnauthorizedResources>false</hideUnauthorizedResources>
         <passwordSettings>
-            <encryptionPolicy>supported</encryptionPolicy>
             <expirationPolicy>
                 <enabled>false</enabled>
                 <passwordMaxAge>60</passwordMaxAge>
@@ -28,14 +24,14 @@
         </passwordSettings>
         <ldapSettings/>
         <ldapGroupSettings/>
-        <userLockPolicy>
-            <enabled>false</enabled>
-            <loginAttempts>5</loginAttempts>
-        </userLockPolicy>
-        <accessClientSettings/>
+        <oauthSettings>
+            <enableIntegration>false</enableIntegration>
+            <allowUserToAccessProfile>false</allowUserToAccessProfile>
+            <persistUsers>false</persistUsers>
+            <oauthProvidersSettings/>
+        </oauthSettings>
         <buildGlobalBasicReadAllowed>false</buildGlobalBasicReadAllowed>
         <buildGlobalBasicReadForAnonymous>false</buildGlobalBasicReadForAnonymous>
-        <basicAuthEnabled>true</basicAuthEnabled>
     </security>
     <backups>
         <backup>
@@ -67,151 +63,9 @@
         <enabled>false</enabled>
         <cronExp>0 23 5 * * ?</cronExp>
     </indexer>
-    <localRepositories>
-        <localRepository>
-            <key>artifactory-build-info</key>
-            <type>buildinfo</type>
-            <description>Build Info repository</description>
-            <includesPattern>**/*</includesPattern>
-            <repoLayoutRef>simple-default</repoLayoutRef>
-            <dockerApiVersion>V2</dockerApiVersion>
-            <forceNugetAuthentication>false</forceNugetAuthentication>
-            <forceConanAuthentication>false</forceConanAuthentication>
-            <ddebSupported>false</ddebSupported>
-            <signedUrlTtl>90</signedUrlTtl>
-            <blackedOut>false</blackedOut>
-            <handleReleases>true</handleReleases>
-            <handleSnapshots>true</handleSnapshots>
-            <maxUniqueSnapshots>0</maxUniqueSnapshots>
-            <maxUniqueTags>0</maxUniqueTags>
-            <blockPushingSchema1>true</blockPushingSchema1>
-            <suppressPomConsistencyChecks>true</suppressPomConsistencyChecks>
-            <propertySets/>
-            <archiveBrowsingEnabled>false</archiveBrowsingEnabled>
-            <priorityResolution>false</priorityResolution>
-            <snapshotVersionBehavior>unique</snapshotVersionBehavior>
-            <localRepoChecksumPolicyType>client-checksums</localRepoChecksumPolicyType>
-            <calculateYumMetadata>false</calculateYumMetadata>
-            <yumRootDepth>0</yumRootDepth>
-            <debianTrivialLayout>false</debianTrivialLayout>
-            <enableFileListsIndexing>false</enableFileListsIndexing>
-            <dockerTagRetention>1</dockerTagRetention>
-            <enableComposerV1Indexing>false</enableComposerV1Indexing>
-            <terraformType>MODULE</terraformType>
-        </localRepository>
-        <localRepository>
-            <key>docker-local</key>
-            <type>docker</type>
-            <includesPattern>**/*</includesPattern>
-            <repoLayoutRef>simple-default</repoLayoutRef>
-            <dockerApiVersion>V2</dockerApiVersion>
-            <forceNugetAuthentication>false</forceNugetAuthentication>
-            <forceConanAuthentication>false</forceConanAuthentication>
-            <ddebSupported>false</ddebSupported>
-            <signedUrlTtl>90</signedUrlTtl>
-            <blackedOut>false</blackedOut>
-            <handleReleases>true</handleReleases>
-            <handleSnapshots>true</handleSnapshots>
-            <maxUniqueSnapshots>0</maxUniqueSnapshots>
-            <maxUniqueTags>0</maxUniqueTags>
-            <blockPushingSchema1>true</blockPushingSchema1>
-            <suppressPomConsistencyChecks>true</suppressPomConsistencyChecks>
-            <propertySets/>
-            <archiveBrowsingEnabled>false</archiveBrowsingEnabled>
-            <priorityResolution>false</priorityResolution>
-            <snapshotVersionBehavior>unique</snapshotVersionBehavior>
-            <localRepoChecksumPolicyType>client-checksums</localRepoChecksumPolicyType>
-            <calculateYumMetadata>false</calculateYumMetadata>
-            <yumRootDepth>0</yumRootDepth>
-            <debianTrivialLayout>false</debianTrivialLayout>
-            <enableFileListsIndexing>false</enableFileListsIndexing>
-            <dockerTagRetention>1</dockerTagRetention>
-            <enableComposerV1Indexing>false</enableComposerV1Indexing>
-            <terraformType>MODULE</terraformType>
-        </localRepository>
-    </localRepositories>
-    <remoteRepositories>
-        <remoteRepository>
-            <key>docker-remote</key>
-            <type>docker</type>
-            <includesPattern>**/*</includesPattern>
-            <repoLayoutRef>simple-default</repoLayoutRef>
-            <dockerApiVersion>V2</dockerApiVersion>
-            <forceNugetAuthentication>false</forceNugetAuthentication>
-            <forceConanAuthentication>false</forceConanAuthentication>
-            <ddebSupported>false</ddebSupported>
-            <signedUrlTtl>90</signedUrlTtl>
-            <blackedOut>false</blackedOut>
-            <handleReleases>true</handleReleases>
-            <handleSnapshots>true</handleSnapshots>
-            <maxUniqueSnapshots>0</maxUniqueSnapshots>
-            <maxUniqueTags>0</maxUniqueTags>
-            <blockPushingSchema1>true</blockPushingSchema1>
-            <suppressPomConsistencyChecks>true</suppressPomConsistencyChecks>
-            <propertySets/>
-            <archiveBrowsingEnabled>false</archiveBrowsingEnabled>
-            <priorityResolution>false</priorityResolution>
-            <url>https://registry-1.docker.io/</url>
-            <offline>false</offline>
-            <hardFail>false</hardFail>
-            <storeArtifactsLocally>true</storeArtifactsLocally>
-            <fetchJarsEagerly>false</fetchJarsEagerly>
-            <fetchSourcesEagerly>false</fetchSourcesEagerly>
-            <externalDependencies>
-                <enabled>false</enabled>
-                <patterns>
-                    <pattern>**</pattern>
-                </patterns>
-            </externalDependencies>
-            <retrievalCachePeriodSecs>21600</retrievalCachePeriodSecs>
-            <metadataRetrievalTimeoutSecs>60</metadataRetrievalTimeoutSecs>
-            <assumedOfflinePeriodSecs>300</assumedOfflinePeriodSecs>
-            <missedRetrievalCachePeriodSecs>1800</missedRetrievalCachePeriodSecs>
-            <remoteRepoChecksumPolicyType>generate-if-absent</remoteRepoChecksumPolicyType>
-            <unusedArtifactsCleanupPeriodHours>0</unusedArtifactsCleanupPeriodHours>
-            <shareConfiguration>false</shareConfiguration>
-            <synchronizeProperties>false</synchronizeProperties>
-            <listRemoteFolderItems>false</listRemoteFolderItems>
-            <rejectInvalidJars>false</rejectInvalidJars>
-            <blockMismatchingMimeTypes>true</blockMismatchingMimeTypes>
-            <mismatchingMimeTypesOverrideList></mismatchingMimeTypesOverrideList>
-            <bypassHeadRequests>false</bypassHeadRequests>
-            <allowAnyHostAuth>false</allowAnyHostAuth>
-            <socketTimeoutMillis>15000</socketTimeoutMillis>
-            <enableCookieManagement>false</enableCookieManagement>
-            <enableTokenAuthentication>true</enableTokenAuthentication>
-            <propagateQueryParams>false</propagateQueryParams>
-            <disableUrlNormalization>false</disableUrlNormalization>
-        </remoteRepository>
-    </remoteRepositories>
-    <virtualRepositories>
-        <virtualRepository>
-            <key>docker</key>
-            <type>docker</type>
-            <includesPattern>**/*</includesPattern>
-            <repoLayoutRef>simple-default</repoLayoutRef>
-            <dockerApiVersion>V2</dockerApiVersion>
-            <forceNugetAuthentication>false</forceNugetAuthentication>
-            <forceConanAuthentication>false</forceConanAuthentication>
-            <ddebSupported>false</ddebSupported>
-            <signedUrlTtl>90</signedUrlTtl>
-            <hideUnauthorizedResources>false</hideUnauthorizedResources>
-            <artifactoryRequestsCanRetrieveRemoteArtifacts>false</artifactoryRequestsCanRetrieveRemoteArtifacts>
-            <resolveDockerTagsByTimestamp>false</resolveDockerTagsByTimestamp>
-            <repositories>
-                <repositoryRef>docker-local</repositoryRef>
-                <repositoryRef>docker-remote</repositoryRef>
-            </repositories>
-            <pomRepositoryReferencesCleanupPolicy>discard_active_reference</pomRepositoryReferencesCleanupPolicy>
-            <defaultDeploymentRepo>docker-local</defaultDeploymentRepo>
-            <virtualCacheConfig>
-                <virtualRetrievalCachePeriodSecs>600</virtualRetrievalCachePeriodSecs>
-            </virtualCacheConfig>
-            <forceMavenAuthentication>false</forceMavenAuthentication>
-            <debianDefaultArchitectures>i386,amd64</debianDefaultArchitectures>
-            <useNamespaces>false</useNamespaces>
-        </virtualRepository>
-    </virtualRepositories>
+    <localRepositories/>
+    <remoteRepositories/>
+    <virtualRepositories/>
     <federatedRepositories/>
     <releaseBundlesRepositories/>
     <proxies/>

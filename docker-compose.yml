@@ -13,6 +13,7 @@ services:
       - "5000:5000"
     volumes:
       - ./jenkins_controller/casc.yml:/usr/share/jenkins/ref/casc.yml
+      - ./jenkins_controller/jobs:/usr/share/jenkins/ref/jobs
     restart: always
 
   jenkins_agent:
@@ -23,13 +24,13 @@ services:
     ports:
       - "2222:22"
     volumes:
-      - /var/run/docker.sock/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDvAaWGhKJsIg+8rdecof0Ky/oinUzNGtAvDMovWQoTdzBQdvY18kxTWbkzGdUq7ApZe9khYCvSMpiGWuSfqAdUbcFFfbC2EYP5vD+nLx18jXdeRlExsWwCSpUdCtwzHNP0k3rahijB5AJyJLZ4Vhw6guuYJAi1wvSd6Quf6TKcPpHN4AZnR0emyA5IAowlwjU4sfMazSb/IX0N8LY+8thIYqWYG5lt6vs7OsRkujiQlVTLxfnoGl5DHXvwfFwKwQk2FFuei1jGuPfJfVMxJV1UAcxnuACewUt3tViBGaep1pAZXiZvRxyxxTqlfiQ1CVnXuQFTfBzMx0sD1sen0EyOWi/2Nf+AwsODS6U1vn6SwMD0ZKICaIUqQOFvOx0bRCdpczS0kgpJNNyZswDtw3AcLAe2q5zekf3T/c6LzDI6XX9LC2YWrZmIVfMZ8YxjK5lv5OojGyqSa5wf/R5LXJ9hOOOAJprb15pT8N7Y2ledOBjYUPri9uwvUmaJVmAaMvc= 
     restart: always
-  
+    
   artifactory:
-    image: docker.bintray.io/jfrog/artifactory-jcr:7.39.4
+    image: docker.bintray.io/jfrog/artifactory-jcr:latest
     container_name: artifactory
     ports:
       - "8081:8081"
