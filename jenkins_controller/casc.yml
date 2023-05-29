@@ -77,10 +77,7 @@ credentials:
                     JiqnD50ghpJKofAAAADXBhbmRhQHZhZ3JhbnQBAgMEBQ==
                     -----END OPENSSH PRIVATE KEY-----
 
-          - string:
-              id: "sonar_token"
-              scope: GLOBAL
-              secret: "{AQAAABAAAAAwAmro1bQGZY1nryvDkpZSWQ6ZWYovsAOo3vvIgOShL4Ra/GBBOr1Y26KT5ussVBicOEMI3dLm5VeY6rdJVG2dJw==}"
+          
 tool:
   sonarRunnerInstallation:
      installations:
@@ -95,8 +92,7 @@ unclassified:
   sonarGlobalConfiguration:
       buildWrapperEnabled: false
       installations:
-      - credentialsId: "sonar_token"
-        name: "SonarQube"
+      - name: "SonarQube"
         serverUrl: "http://192.168.44.44:9000"   
         triggers:
           skipScmCause: false
