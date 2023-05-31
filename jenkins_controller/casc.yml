@@ -92,11 +92,9 @@ unclassified:
   sonarGlobalConfiguration:
       buildWrapperEnabled: false
       installations:
-<<<<<<< HEAD
+
       - name: "SonarQube"
-=======
-        name: "SonarQube"
->>>>>>> f7bdfb7a0f1acf7f4868ca87b7fa3bc21b64410d
+
         serverUrl: "http://192.168.44.44:9000"   
         triggers:
           skipScmCause: false
