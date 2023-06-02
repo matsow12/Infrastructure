@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<config xmlns="http://artifactory.jfrog.org/xsd/3.2.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://releases.jfrog.io/artifactory/static-release-virtual/xsd/artifactory/artifactory-v3_2_6.xsd">
+<config xmlns="http://artifactory.jfrog.org/xsd/3.1.29" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.jfrog.org/xsd/artifactory-v3_1_29.xsd">
     <offlineMode>false</offlineMode>
     <archiveIndexEnabled>false</archiveIndexEnabled>
+    <helpLinksEnabled>true</helpLinksEnabled>
     <fileUploadMaxSizeMb>100</fileUploadMaxSizeMb>
     <revision>3</revision>
+    <dateFormat>dd-MM-yy HH:mm:ss z</dateFormat>
     <addons>
         <showAddonsInfo>true</showAddonsInfo>
-        <showAddonsInfoCookie>1683734494877</showAddonsInfoCookie>
+        <showAddonsInfoCookie>1683734135101</showAddonsInfoCookie>
     </addons>
     <security>
+        <anonAccessEnabled>false</anonAccessEnabled>
         <hideUnauthorizedResources>false</hideUnauthorizedResources>
         <passwordSettings>
+            <encryptionPolicy>supported</encryptionPolicy>
             <expirationPolicy>
                 <enabled>false</enabled>
                 <passwordMaxAge>60</passwordMaxAge>
@@ -24,14 +28,14 @@
         </passwordSettings>
         <ldapSettings/>
         <ldapGroupSettings/>
-        <oauthSettings>
-            <enableIntegration>false</enableIntegration>
-            <allowUserToAccessProfile>false</allowUserToAccessProfile>
-            <persistUsers>false</persistUsers>
-            <oauthProvidersSettings/>
-        </oauthSettings>
+        <userLockPolicy>
+            <enabled>false</enabled>
+            <loginAttempts>5</loginAttempts>
+        </userLockPolicy>
+        <accessClientSettings/>
         <buildGlobalBasicReadAllowed>false</buildGlobalBasicReadAllowed>
         <buildGlobalBasicReadForAnonymous>false</buildGlobalBasicReadForAnonymous>
+        <basicAuthEnabled>true</basicAuthEnabled>
     </security>
     <backups>
         <backup>
@@ -63,8 +67,42 @@
         <enabled>false</enabled>
         <cronExp>0 23 5 * * ?</cronExp>
     </indexer>
-    <localRepositories/>
-    <remoteRepositories/>
+    <localRepositories>
+        <localRepository>
+            <key>docker_registry</key>
+            <type>docker</type>
+            <description></description>
+            <notes></notes>
+            <includesPattern>**/*</includesPattern>
+            <excludesPattern></excludesPattern>
+            <repoLayoutRef>simple-default</repoLayoutRef>
+            <dockerApiVersion>V2</dockerApiVersion>
+            <forceNugetAuthentication>false</forceNugetAuthentication>
+            <forceConanAuthentication>false</forceConanAuthentication>
+            <ddebSupported>false</ddebSupported>
+            <signedUrlTtl>90</signedUrlTtl>
+            <blackedOut>false</blackedOut>
+            <handleReleases>true</handleReleases>
+            <handleSnapshots>true</handleSnapshots>
+            <maxUniqueSnapshots>0</maxUniqueSnapshots>
+            <maxUniqueTags>0</maxUniqueTags>
+            <blockPushingSchema1>true</blockPushingSchema1>
+            <suppressPomConsistencyChecks>true</suppressPomConsistencyChecks>
+            <propertySets/>
+            <archiveBrowsingEnabled>false</archiveBrowsingEnabled>
+            <priorityResolution>false</priorityResolution>
+            <snapshotVersionBehavior>unique</snapshotVersionBehavior>
+            <localRepoChecksumPolicyType>client-checksums</localRepoChecksumPolicyType>
+            <calculateYumMetadata>false</calculateYumMetadata>
+            <yumRootDepth>0</yumRootDepth>
+            <debianTrivialLayout>false</debianTrivialLayout>
+            <enableFileListsIndexing>false</enableFileListsIndexing>
+            <dockerTagRetention>1</dockerTagRetention>
+            <enableComposerV1Indexing>false</enableComposerV1Indexing>
+            <terraformType>MODULE</terraformType>
+        </localRepository>
+    </localRepositories>
+    <remoteRepositories/>   
     <virtualRepositories/>
     <federatedRepositories/>
     <releaseBundlesRepositories/>
@@ -268,7 +306,7 @@
     </downloadRedirectConfig>
     <eula>
         <accepted>true</accepted>
-        <acceptDate>2023-05-10T16:13:38.191Z</acceptDate>
+        <acceptDate>2023-05-10T15:59:16.456Z</acceptDate>
     </eula>
     <keyPairs/>
     <retentionSettings>
